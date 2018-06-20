@@ -14,7 +14,7 @@ cordova plugin add https://github.com/wangshengjin/cordova-plugin-ios-checkVersi
 ## Usage
 
 ```javascript
-window.plugins.NBCheckVersion((boo)=>{
+window.plugins.NBCheckVersion.check((boo)=>{
   if(boo){
     window.plugins.NBCheckVersion.toUpdate();
   }
