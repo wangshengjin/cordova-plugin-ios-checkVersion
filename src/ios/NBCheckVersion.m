@@ -2,13 +2,15 @@
 #import <Cordova/CDV.h>
 
 @implementation NBCheckVersion
-
+static NSString *appTrackId=@"";
 - (void)check:(CDVInvokedUrlCommand*)command {
     NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString* appID = infoDictionary[@"CFBundleIdentifier"];
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@", appID]];
     NSData* data = [NSData dataWithContentsOfURL:url];
+//    https://stackoverflow.com/questions/9717159/get-itunes-app-store-id-of-an-app-itself
     NSDictionary* lookup = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    appTrackId = lookup[@"results"][0][@"trackId"];
     BOOL resu = NO;
    if ([lookup[@"resultCount"] integerValue] == 1)
    {
