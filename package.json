@@ -1,0 +1,32 @@
+{
+  "name": "cordova-plugin-ios-checkversion",
+  "version": "1.0.0",
+  "description": "This plugin allows you to check ios app need update.",
+  "cordova": {
+    "id": "cordova-plugin-ios-checkVersion",
+    "platforms": [
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangshengjin/cordova-plugin-ios-checkVersion.git"
+  },
+  "keywords": [
+    "ios",
+    "app",
+    "CheckVersion"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "wangshengjin <wangshengjin@nobook.com> (https://github.com/wangshengjin)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wangshengjin/cordova-plugin-ios-checkVersion/issues"
+  },
+  "homepage": "https://github.com/wangshengjin/cordova-plugin-ios-checkVersion#readme"
+}

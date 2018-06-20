@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="cordova-plugin-ios-checkVersion"
+        version="1.0.0">
+
+  <name>NBCheckVersion</name>
+
+  <description>
+    This plugin allows you to check ios app need update.
+  </description>
+
+  <author>wangshengjin</author>
+
+  <license>MIT</license>
+
+  <keywords>ios,app,CheckVersion</keywords>
+
+  <repo>https://github.com/wangshengjin/cordova-plugin-ios-checkVersion.git</repo>
+
+  <issue>https://github.com/wangshengjin/cordova-plugin-ios-checkVersion/issues</issue>
+
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <js-module src="www/NBCheckVersion.js" name="NBCheckVersion">
+    <clobbers target="window.plugins.NBCheckVersion" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="NBCheckVersion">
+        <param name="ios-package" value="NBCheckVersion"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/NBCheckVersion.h"/>
+    <source-file src="src/ios/NBCheckVersion.m"/>
+  </platform>
+</plugin>
