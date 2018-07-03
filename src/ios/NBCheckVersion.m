@@ -10,20 +10,33 @@ static NSString *appTrackId=@"";
     NSData* data = [NSData dataWithContentsOfURL:url];
 //    https://stackoverflow.com/questions/9717159/get-itunes-app-store-id-of-an-app-itself
     NSDictionary* lookup = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-    appTrackId = lookup[@"results"][0][@"trackId"];
-    BOOL resu = NO;
-   if ([lookup[@"resultCount"] integerValue] == 1)
-   {
-       NSString* appStoreVersion = lookup[@"results"][0][@"version"];
-       NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
-       if (![appStoreVersion isEqualToString:currentVersion])
-       {
-           resu = YES;
-           NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
-       }
+    
+    @try
+    {
+//        NSArray* arraytest = [[NSArray alloc] init];
+        appTrackId = lookup[@"results"][0][@"trackId"];
+        BOOL resu = NO;
+        if ([lookup[@"resultCount"] integerValue] == 1)
+        {
+            NSString* appStoreVersion = lookup[@"results"][0][@"version"];
+            NSString* currentVersion = infoDictionary[@"CFBundleShortVersionString"];
+            if (![appStoreVersion isEqualToString:currentVersion])
+            {
+                resu = YES;
+                NSLog(@"Need to update [%@ != %@]", appStoreVersion, currentVersion);
+            }
+        }
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:resu];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        
     }
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:resu];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    @catch (NSException *exception)
+    {
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:NO];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        return;
+    }
+    
 }
 
 - (void)toUpdate:(CDVInvokedUrlCommand*)command {
