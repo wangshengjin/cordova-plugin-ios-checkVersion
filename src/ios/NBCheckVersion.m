@@ -8,11 +8,11 @@ static NSString *appTrackId=@"";
     NSString* appID = infoDictionary[@"CFBundleIdentifier"];
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@", appID]];
     NSData* data = [NSData dataWithContentsOfURL:url];
-//    https://stackoverflow.com/questions/9717159/get-itunes-app-store-id-of-an-app-itself
-    NSDictionary* lookup = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     
     @try
     {
+      //    https://stackoverflow.com/questions/9717159/get-itunes-app-store-id-of-an-app-itself
+        NSDictionary* lookup = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
 //        NSArray* arraytest = [[NSArray alloc] init];
         appTrackId = lookup[@"results"][0][@"trackId"];
         BOOL resu = NO;
