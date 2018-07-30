@@ -4,9 +4,19 @@
 @implementation NBCheckVersion
 static NSString *appTrackId=@"";
 - (void)check:(CDVInvokedUrlCommand*)command {
+    NSString* httpurl = @"http://itunes.apple.com";
+    @try{
+        NSString* arg1 = command.arguments[0];
+        httpurl = arg1;
+    }
+    @catch (NSException *exception)
+    {
+        
+    }
+    
     NSDictionary* infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString* appID = infoDictionary[@"CFBundleIdentifier"];
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/lookup?bundleId=%@", appID]];
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/lookup?bundleId=%@", httpurl ,appID]];
     NSData* data = [NSData dataWithContentsOfURL:url];
     
     @try

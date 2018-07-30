@@ -1,8 +1,12 @@
 function NBCheckVersion() {
 }
 
-NBCheckVersion.prototype.check = function (successCallback, errorCallback) {
-  cordova.exec(successCallback, errorCallback, "NBCheckVersion", "check", []);
+NBCheckVersion.prototype.check = function (domainurl, successCallback, errorCallback) {
+  if(domainurl){
+    cordova.exec(successCallback, errorCallback, "NBCheckVersion", "check", [domainurl]);
+  }else{
+    cordova.exec(successCallback, errorCallback, "NBCheckVersion", "check", []);
+  }
 };
 
 NBCheckVersion.prototype.toUpdate = function (successCallback, errorCallback) {
